@@ -15,31 +15,35 @@
 ## 📖 Table of Contents
 - [📖 Table of Contents](#-table-of-contents)
 - [📍 Overview](#-overview)
-- [📦 Features](#-features)
 - [📂 repository Structure](#-repository-structure)
 - [⚙️ Modules](#modules)
-- [🚀 Getting Started](#-getting-started)
-    - [🔧 Installation](#-installation)
-    - [🤖 Running GNSS-DR_Loco](#-running-GNSS-DR_Loco)
-    - [🧪 Tests](#-tests)
-- [🛣 Roadmap](#-roadmap)
-- [🤝 Contributing](#-contributing)
+- [🔧 Installation](#-installation)
+- [🤖 Running GNSS-DR_Loco](#-running-GNSS-DR_Loco)
 - [📄 License](#-license)
-- [👏 Acknowledgments](#-acknowledgments)
 
 ---
-
-
 ## 📍 Overview
 
 This project implements integrated navigation, GNSS and Dead-reckoning, for a robotic lawnmower.
 
-
 ---
 
-## 📦 Features
+## 📦 Workflow
 
-HTTPStatus Exception: 404
+1. Determine the initial position and velocity of the lawnmower based on iterative least squares using
+data from GNSS.
+
+2. Determine the position and velocity of the lawnmower at each time based on Kalman filtering using
+data from GNSS.
+
+3. Generate the corrected heading of the lawnmower based on Kalman filtering using data from a gyro-
+scope and magnetic compass.
+
+4. Model the speed model. Determine the position and the velocity of the lawnmower at each time using
+data from wheel speed sensors with the Dead-Reckoning approach.
+
+5. Fuse the data from step 2 and 4 based on Kalman filtering and integrate DR/GNSS to get the final
+result
 
 ---
 
@@ -91,16 +95,16 @@ HTTPStatus Exception: 404
 | [Integrated_Heading.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Integrated_Heading.m)                           | Integrates gyroscope and magnetometer based on Kalman Filter |
 | [NED_to_ECEF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/NED_to_ECEF.m)                                         | Converts curvilinear to Cartesian position, velocity resolving axes from NED to ECEF and attitude from NED- to ECEF-referenced |
 | [Satellite_position_and_velocity.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Satellite_position_and_velocity.m) | Returns ECEF Cartesian positions and ECEF velocities for one satellite |
-| [LS_Init.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/LS_Init.m)                                                 | HTTPStatus Exception: 404 |
-| [Euler_to_CTM.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Euler_to_CTM.m)                                       | HTTPStatus Exception: 404 |
-| [ECEF_to_NED.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/ECEF_to_NED.m)                                         | HTTPStatus Exception: 404 |
-| [Gravity_ECEF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Gravity_ECEF.m)                                       | HTTPStatus Exception: 404 |
-| [DR_Solution.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/DR_Solution.m)                                         | HTTPStatus Exception: 404 |
-| [pv_ECEF_to_NED.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/pv_ECEF_to_NED.m)                                   | HTTPStatus Exception: 404 |
-| [CTM_to_Euler.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/CTM_to_Euler.m)                                       | HTTPStatus Exception: 404 |
-| [GNSS_KF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/GNSS_KF.m)                                                 | HTTPStatus Exception: 404 |
-| [Radii_of_curvature.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Radii_of_curvature.m)                           | HTTPStatus Exception: 404 |
-| [Skew_symmetric.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Skew_symmetric.m)                                   | HTTPStatus Exception: 404 |
+| [LS_Init.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/LS_Init.m)                                                 | Initialises position and velocity at time=0 using least-queare algorithm |
+| [Euler_to_CTM.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Euler_to_CTM.m)                                       | Converts a set of Euler angles to the corresponding coordinate transformation matrix |
+| [ECEF_to_NED.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/ECEF_to_NED.m)                                         | Converts Cartesian  to curvilinear position, velocity resolving axes from ECEF to NED and attitude from ECEF- to NED-referenced |
+| [Gravity_ECEF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Gravity_ECEF.m)                                       | Calculates  acceleration due to gravity resolved about ECEF-frame |
+| [DR_Solution.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/DR_Solution.m)                                         | Calculates pos and vel with Dead-reckoning method|
+| [pv_ECEF_to_NED.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/pv_ECEF_to_NED.m)                                   |Converts Cartesian  to curvilinear position and velocity resolving axes from ECEF to NED |
+| [CTM_to_Euler.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/CTM_to_Euler.m)                                       | Converts a coordinate transformation matrix to the corresponding set of Euler angles|
+| [GNSS_KF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/GNSS_KF.m)                                                 | Calculates pos amd vel with Kalman filter based GNSS and outlier detection |
+| [Radii_of_curvature.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Radii_of_curvature.m)                           | Calculates the meridian and transverse radii of curvature |
+| [Skew_symmetric.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Skew_symmetric.m)                                   | Calculates skew-symmetric matrix |
 
 </details>
 
