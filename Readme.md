@@ -45,6 +45,10 @@ data from wheel speed sensors with the Dead-Reckoning approach.
 5. Fuse the data from step 2 and 4 based on Kalman filtering and integrate DR/GNSS to get the final
 result
 
+  <div align="center">
+    <img width="60%" src="https://github.com/alstondu/GNSS-DR_Loco/blob/main/fig/flow%20chart.png"></a>
+  </div>
+
 ---
 
 
@@ -81,10 +85,7 @@ result
 ```
 
 ---
-
-
 ## ⚙️ Modules
-
 <details closed><summary>Root</summary>
 
 | File                                                                                                                      | Summary                   |
@@ -119,9 +120,15 @@ git clone https://github.com/alstondu/GNSS-DR_Loco
 ---
 ### 🤖 Running GNSS-DR_Loco
 
-```sh
-./myapp
-```
+1. Run [LS_Init.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/LS_Init.m) to obtain initial data
+
+2. Run [Integrated_Heading.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/Integrated_Heading.m) to get fused heading
+   
+3. Run [GNSS_KF.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/GNSS_KF.m) to get GNSS solution
+   
+4. Run [DR_Solution.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/DR_Solution.m) to get Dead-reckoning solution
+   
+5. Run [GNDD_DR_Fusion.m](https://github.com/alstondu/GNSS-DR_Loco/blob/main/GNDD_DR_Fusion.m) to get final integrated solution
 
 ---
 
