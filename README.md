@@ -15,10 +15,11 @@
 ## 📖 Table of Contents
 - [📖 Table of Contents](#-table-of-contents)
 - [📍 Overview](#-overview)
+- [📦 Workflow](#-workflow)
 - [📂 repository Structure](#-repository-structure)
-- [⚙️ Modules](#modules)
+- [⚙️ Modules](#-modules)
 - [🔧 Installation](#-installation)
-- [🤖 Running GNSS-DR_Loco](#-running-GNSS-DR_Loco)
+- [🤖 Running GNSS-DR_Loco](#-running-gnss-dr_loco)
 - [📄 License](#-license)
 
 ---
